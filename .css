@@ -7,9 +7,10 @@ body {
     margin: 0;
 }
 
-/* Button styling */
+/* Button styling. Kepp this the way it is */
 button {
-    background-color: #04AA6D; /* green */
+    background-color: #04AA6D; /* green. if you guys want to change
+    it just change the word green to that color to stay organized */
     color: rgb(255, 213, 203);
     padding: 15px 32px;
     font-size: 16px;
