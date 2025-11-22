@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First HTML Page</title>
+    <title>RYJGbuds</title>
     <style>
-        /* Background color */
+        /* ===== Body ===== */
         body {
             background-color: lightblue;
             font-family: Arial, sans-serif;
@@ -14,9 +14,12 @@
             margin: 0;
         }
 
-        /* Button styling */
+        h1 { color: #333; }
+        p { color: #222; }
+
+        /* ===== Buttons ===== */
         button {
-            background-color: #04AA6D; /* green */
+            background-color: #04AA6D;
             color: rgb(255, 213, 203);
             padding: 15px 32px;
             font-size: 16px;
@@ -30,32 +33,65 @@
             background-color: #028a5e;
         }
 
-        h1 {
-            color: #333;
-        }
-
-        p {
-            color: #222;
-        }
-
-        /* Canvas styling */
+        /* ===== Cube container ===== */
         #cube-container {
-            width: 400px;
-            height: 400px;
+            width: 200px;
+            height: 200px;
             margin: 50px auto;
+            perspective: 800px; /* 3D perspective */
+        }
+
+        /* ===== Cube ===== */
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 5s linear infinite; /* continuous spin */
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 128, 255, 0.7);
+            border: 2px solid #fff;
+            box-sizing: border-box;
+        }
+
+        .front  { transform: rotateY(0deg) translateZ(100px); }
+        .back   { transform: rotateY(180deg) translateZ(100px); }
+        .right  { transform: rotateY(90deg) translateZ(100px); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .top    { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        @keyframes spin {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to   { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* ===== Footer ===== */
+        footer fieldset {
+            margin: 50px auto;
+            width: 80%;
+            border: 1px solid #333;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.8);
+            font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-      <h1>RYJGbuds</h1>
+
+    <h1>RYJGbuds</h1>
     <p>Made for school.</p>
 
     <button type="button" onclick="window.location.href='helper.html'">Go to help page</button>
     <br><br>
-
     <button type="button" onclick="window.location.href='about.html'">Go to about page</button>
     <br><br>
-
     <button type="button" onclick="window.location.href='Help2page.html'">Go to help</button>
     <br><br>
 
@@ -64,57 +100,29 @@
     </small>
     <br>
     <small>Copyright reserved</small>
-   <!-- Cube container -->
-<div id="cube-container"></div>
 
+    <!-- ===== CSS Cube ===== -->
+    <div id="cube-container">
+        <div class="cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-<script>
-    // Scene setup 6 7
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    
-    const container = document.getElementById('cube-container');
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(renderer.domElement);
+    <footer>
+        <fieldset>
+            This was created using HTML and CSS. Reminder: use this website appropriately.
+            Keep in mind that this is still a beta release, so expect bugs.
+        </fieldset>
+    </footer>
 
-// Cube 6 7
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true }); // blue lines
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+    <br><br><br><br>
+    <h1>Primary Resources</h1>
+    <br><br>
 
-
-    camera.position.z = 3;
-
-    // Animation 6 7
-    function animate() {
-        requestAnimationFrame(animate);
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    // resizing 6 7
-    window.addEventListener('resize', () => {
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-    });
-</script>
-
-<footer><fieldset>
-
-This was created using html, javascript, and css. Reminder, use this website school appropriately.
-Keep in mind that this is still a beta release so expect bugs.
-
-</fieldset></footer>
-</br>
-</br>
-</br>
-</br>
-<h1> Primary Resorces </h1>
-<br/>
-</br/>
+</body>
+</html>
